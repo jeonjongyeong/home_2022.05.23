@@ -15,6 +15,14 @@ const pool = mysql.createPool({
 
 const app = express();
 app.use(express.json());
+
+const corsOptions = {
+  origin: "https://cdpn.io",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+// app.use(cors()); // 모든 타 도메인을 허용
+app.use(cors(corsOptions)); // 특정 도메인을 허용
 const port = 3000;
 
 app.delete("/todos/:id", async (req, res) => {
